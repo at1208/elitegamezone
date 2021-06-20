@@ -2,9 +2,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host:https://elitegamezone.com
-
-Disallow: https://cms.readifly.com/api/*
+Host: https://elitegamezone.com
 
 # Sitemaps
-Sitemap:https://elitegamezone.com/server-sitemap.xml
+Sitemap: https://elitegamezone.com/server-sitemap.xml
