@@ -77,19 +77,19 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
               <title>{process.env.NEXT_PUBLIC_APP_NAME}</title>
               <meta
               name="description"
-              content="As they say it's important to keep up with the cutting edge of trends and it's important to understand the need of an hour. So fashion and dress sense is one of them. In this area of blog we will be writing about Fashion in common."
+              content="Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries."
               />
               <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DOMAIN_URL}`} />
-              <meta property="og:title" content={`As they say it's important to keep up with the cutting edge of trends and it's important to understand the need of an hour. So fashion and dress sense is one of them. In this area of blog we will be writing about Fashion in common | ${process.env.NEXT_PUBLIC_APP_NAME}`} />
+              <meta property="og:title" content={`Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries. | ${process.env.NEXT_PUBLIC_APP_NAME}`} />
               <meta
               property="og:description"
-              content="As they say it's important to keep up with the cutting edge of trends and it's important to understand the need of an hour. So fashion and dress sense is one of them. In this area of blog we will be writing about Fashion in common."
+              content="Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries."
               />
               <meta property="og:type" content="website" />
               <meta property="og:url" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}`} />
               <meta property="og:site_name" content={`${process.env.NEXT_PUBLIC_APP_NAME}`} />
-              <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/fashiofly.svg`} />
-              <meta property="og:image:secure_url" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/fashiofly.svg`} />
+              <meta property="og:image" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/elitegamezone.svg`} />
+              <meta property="og:image:secure_url" content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/elitegamezone.svg`} />
               <meta property="og:image:type" content="image/jpg" />
               <meta property="fb:app_id" content={`${process.env.NEXT_PUBLIC_FB_APP_ID}`} />
             </Head>
