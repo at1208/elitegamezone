@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://elitegamezone.com
+Host: https://www.elitegamezone.com
 
 # Sitemaps
-Sitemap: https://elitegamezone.com/server-sitemap.xml
+Sitemap: https://www.elitegamezone.com/server-sitemap.xml
