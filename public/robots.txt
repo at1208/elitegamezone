@@ -6,3 +6,6 @@ Host: https://www.elitegamezone.com
 
 # Sitemaps
 Sitemap: https://www.elitegamezone.com/server-sitemap.xml
+
+Disallow: http://www.elitegamezone.com/*
+Disallow: http://elitegamezone.com/*
