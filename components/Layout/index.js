@@ -1,16 +1,23 @@
-import Header from '../Header';
-import Footer from '../Footer';
-import styles from '../../styles/Layout.module.css';
+import Header from "../Header";
+import Footer from "../Footer";
+import styles from "../../styles/Layout.module.css";
 
-const Layout = ({ children  }) => {
-  return <>
-            <Header />
+import Router from "next/router";
+import NProgress from "nprogress";
 
-            <div className={styles.layout}>
-              {children}
-            </div>
-          <Footer />
-         </>
-}
+Router.onRouteChangeStart = (url) => NProgress.start();
+Router.onRouteChangeComplete = (url) => NProgress.done();
+Router.onRouteChangeError = (url) => NProgress.done();
+
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Header />
+
+      <div className={styles.layout}>{children}</div>
+      <Footer />
+    </>
+  );
+};
 
 export default Layout;
