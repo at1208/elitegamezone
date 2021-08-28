@@ -244,14 +244,31 @@ const Home = ({
                           <AuthorList />
                         ) : (
                           <div className="row col">
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
-                            <AuthorCardSkeleton />
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
+                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
+                              <AuthorCardSkeleton />
+                            </div>
                           </div>
                         )}
                       </div>
