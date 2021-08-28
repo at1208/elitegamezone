@@ -96,8 +96,7 @@ const Home = ({
   function HeaderSEO() {
     return (
       <Head>
-        <title>Home</title>
-        <title>{process.env.NEXT_PUBLIC_APP_NAME}</title>
+        <title>Elitegamezone</title>
         <meta
           name="description"
           content="Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries."
@@ -291,7 +290,11 @@ const Home = ({
                         </>
                       )}
                       <div className="pl-3" style={{ color: "teal" }}>
-                        See more
+                        <Link href="/categories">
+                          <a>
+                            <span style={{ color: "teal" }}>See more</span>
+                          </a>
+                        </Link>
                       </div>
                     </section>
                   </div>

@@ -186,3 +186,18 @@ img {
     transform: rotate(360deg);
   }
 }
+
+.category-name {
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
+  text-transform: capitalize;
+  text-decoration: underline;
+  font-weight: 500;
+}
+@media (max-width: 767px) {
+  .category-name {
+    padding-left: 30px !important;
+    text-align: left;
+  }
+}
