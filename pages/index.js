@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { Box, Typography } from "@material-ui/core";
 import styles from "../styles/Home.module.css";
+import Skeleton from "react-loading-skeleton";
 import BlogLargeCard from "../components/Blog/Cards/largeCard";
 import BlogSmallCard from "../components/Blog/Cards/smallCard";
 import BlogMediumCard from "../components/Blog/Cards/mediumCard";
@@ -12,15 +13,28 @@ import LargeCardSkeleton from "../components/Blog/Cards/largeCardSkeleton";
 import SmallCardSkeleton from "../components/Blog/Cards/smallCardSkeleton";
 import AuthorCardSkeleton from "../components/Blog/Cards/authorCardSkeleton";
 import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import Layout from "../components/Layout";
 import { blog_list, author_list, trending_list } from "../actions/blog";
 import { random_categories } from "../actions/category";
 
-const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
+const Home = ({
+  largeBlogs,
+  smallBlogs,
+  mediumBlogs,
+  blogsLimit,
+  blogSkip,
+  totalBlogs,
+}) => {
   const [authors, setAuthors] = useState();
   const [trendingBlogs, setTrending] = useState();
   const [categories, setCategories] = useState();
+  const [limit, setLimit] = useState(blogsLimit);
+  const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(totalBlogs);
+  const [stopLoading, setStopLoading] = useState(false);
+  const [loadedBlogs, setLoadedBlogs] = useState([]);
 
   useEffect(() => {
     window.onscroll = function () {
@@ -64,6 +78,20 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
         console.log(err);
       });
   }, []);
+
+  async function loadMore() {
+    try {
+      let toSkip = skip + limit;
+      let data = await blog_list({ skip: toSkip, limit });
+      if (data.length === 0) return setStopLoading(true);
+      setLoadedBlogs([...loadedBlogs, ...data]);
+      setSize(data.length);
+      setSkip(toSkip);
+      return data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   function HeaderSEO() {
     return (
@@ -168,6 +196,17 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
       });
     }
   }
+
+  function ShowMoreBlogs() {
+    if (loadedBlogs) {
+      return loadedBlogs.map((blog, i) => {
+        return <BlogMediumCard blog={blog} key={i} />;
+      });
+    } else {
+      return <> </>;
+    }
+  }
+
   return (
     <>
       <HeaderSEO />
@@ -225,7 +264,15 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
                     <section className="mt-5">
                       <font className={styles.title1}>TOPICS TO READ</font>
                       <br /> <br />
-                      {categories ? ReadByCategories() : <SmallCardSkeleton />}
+                      {categories ? (
+                        ReadByCategories()
+                      ) : (
+                        <>
+                          <SmallCardSkeleton />
+                          <SmallCardSkeleton />
+                          <SmallCardSkeleton />
+                        </>
+                      )}
                       <div className="pl-3" style={{ color: "teal" }}>
                         See more
                       </div>
@@ -251,6 +298,32 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
           <div className="row">
             <div className="col-md-8">
               <MediumblogList />
+              {
+                <InfiniteScroll
+                  dataLength={loadedBlogs.length}
+                  next={loadMore}
+                  hasMore={true}
+                  style={{ overflow: "hidden !important" }}
+                  loader={
+                    !stopLoading && (
+                      <div style={{ margin: "10px 0px 70px 0px" }}>
+                        <div className="row col">
+                          <div className="col-8">
+                            <Box>
+                              <Skeleton count={4} width={"90%"} />
+                            </Box>
+                          </div>
+                          <div className="col-4">
+                            <Skeleton width={"80%"} height={"100%"} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  }
+                >
+                  {<ShowMoreBlogs />}
+                </InfiniteScroll>
+              }
             </div>
             <div className="col-md-4 d-lg-block d-xl-block d-none d-md-block d-lg-none">
               <section className="rightbottom" id="rightbottom">
@@ -350,7 +423,9 @@ const Home = ({ largeBlogs, smallBlogs, mediumBlogs }) => {
 
 Home.getInitialProps = async () => {
   try {
-    let blog = await blog_list();
+    let skip = 0;
+    let limit = 10;
+    let blog = await blog_list({ limit, skip });
     let largeBlogs = blog && blog[0];
     let smallBlogs = blog && blog.slice(1, 5);
     let mediumBlogs = blog && blog.slice(5);
@@ -358,6 +433,9 @@ Home.getInitialProps = async () => {
       largeBlogs,
       smallBlogs,
       mediumBlogs,
+      blogsLimit: limit,
+      blogSkip: skip,
+      totalBlogs: blog.length,
     };
   } catch (e) {
     return {

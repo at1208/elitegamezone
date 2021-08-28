@@ -13,7 +13,6 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-
       <div className={styles.layout}>{children}</div>
       <Footer />
     </>
