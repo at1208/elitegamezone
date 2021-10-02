@@ -50,7 +50,6 @@ const Header = () => {
               className={styles.logo}
               alt="Elitegamezone"
             />
-            <span className={styles.appname}>EliteGameZone</span>
           </a>
         </Grid>
         <Grid item></Grid>
