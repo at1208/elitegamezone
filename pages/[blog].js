@@ -36,7 +36,7 @@ const Blog = ({ query, blog }) => {
             </Grid>
           </Grid>
           <Box className={styles.morecontainer}>
-            <h5 className={styles.moretitle}>More from Broocode</h5>
+            <h5 className={styles.moretitle}>More from Elitegamezone</h5>
             <Grid container justify="center">
               <Grid item xs={12} sm={11} md={11} lg={11} xl={11}>
                 <Grid container>
