@@ -1,32 +1,37 @@
-.title{
+.title {
   font-size: 16px;
   font-weight: 700;
-  -webkit-line-clamp:2;
-  -webkit-box-orient:vertical;
-  display:-webkit-box;
-  text-overflow:ellipsis;
-  overflow:hidden;
- color: rgba(41, 41, 41, 1);
- line-height: 20px;
- font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: rgba(41, 41, 41, 1);
+  line-height: 20px;
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.subheading{
+.subheading {
   font-size: 19px;
   padding: 8px 0px 10px 0px;
   font-family: sans-serif;
   font-weight: 300;
 }
-.time{
+.time {
   font-size: 13px;
   line-height: 20px;
   font-weight: 400;
   color: rgba(117, 117, 117, 1);
 }
-.outercontainer{
-  margin-bottom: 20px;
+.outercontainer {
+  /* margin-bottom: 20px; */
   cursor: pointer;
+  background-color: white;
+  border-radius: 5px 5px 5px 5px;
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.name{
+.name {
   font-size: 13px;
   font-weight: 500;
   max-height: 16px;
@@ -35,7 +40,7 @@
   padding-right: 4px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.categoryname{
+.categoryname {
   font-size: 13px;
   font-weight: 500;
   max-height: 16px;
@@ -44,7 +49,7 @@
   padding-right: 4px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.in{
+.in {
   font-size: 13px;
   padding-right: 4px;
   font-weight: 500;
@@ -52,15 +57,17 @@
   color: rgb(117, 117, 117);
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.text{
+.text {
   line-height: 20px;
-  font-size: 16px;
+  font-size: 15px;
   padding: 5px 0px 5px 0px;
   font-weight: 700;
   color: rgba(41, 41, 41, 1);
 }
-.count{
+.count {
   line-height: 36px;
+  text-align: center;
+  padding: 10px;
   font-size: 30px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;

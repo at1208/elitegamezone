@@ -1,18 +1,13 @@
 import { withRouter } from "next/router";
 import Layout from "../../components/Layout";
 import Head from "next/head";
-import BlogMediumCard from "../../components/Blog/Cards/mediumCard";
+import { Grid } from "@material-ui/core";
+// import BlogMediumCard from "../../components/Blog/Cards/mediumCard";
 import { category_list_by_domain } from "../../actions/category";
 import Link from "next/link";
 
 const Category = ({ data, router }) => {
   if (data) {
-    function BlogsByCategory() {
-      return data.map((blog, i) => {
-        return <BlogMediumCard blog={blog} key={i} />;
-      });
-    }
-
     function HeaderSEO() {
       return (
         <Head>
@@ -63,25 +58,21 @@ const Category = ({ data, router }) => {
       <>
         <Layout>
           <HeaderSEO />
-          <div className="row col container">
-            <div className="col-md-2"></div>
-            <div className="col-md-8">
-              <div className="row col">
-                {data.map((category, i) => {
-                  return (
-                    <div className="col-md-3 category-name" key={i}>
-                      <Link href={`/category/${category.slug}`}>
-                        <a>
-                          <span style={{ color: "teal" }}>{category.name}</span>
-                        </a>
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="col-md-2"></div>
-          </div>
+          <Grid container justify="left">
+            {data.map((category, i) => {
+              return (
+                <Grid item md={3} lg={3} xs={12}>
+                  <div className="col-md-3 category-name" key={i}>
+                    <Link href={`/category/${category.slug}`}>
+                      <a>
+                        <span style={{ color: "teal" }}>{category.name}</span>
+                      </a>
+                    </Link>
+                  </div>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Layout>
       </>
     );

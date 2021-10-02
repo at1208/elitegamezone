@@ -1,7 +1,7 @@
 .title {
   font-size: 48px;
   line-height: 60px;
-  margin-top: 0.56em;
+  margin-top: 0px;
   margin-bottom: -0.27em;
   letter-spacing: -0.011em;
   font-weight: 400;
@@ -9,11 +9,20 @@
   font-style: normal;
   font-family: fell, Georgia, Cambria, "Times New Roman", Times, serif;
 }
+.container {
+  background-color: white;
+  /* padding: 10px; */
+}
+.featureImg {
+  width: 100%;
+  height: 100%;
+}
 .body {
   letter-spacing: -0.003em;
   line-height: 32px;
   margin-top: 2em;
   font-size: 21px;
+  padding: 10px;
   margin-bottom: -0.46em;
   font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif;
   font-style: normal;
@@ -24,13 +33,14 @@
 @media (max-width: 600px) {
   .title {
     font-size: 34px;
-    margin-top: 0.56em;
+    margin-top: 0px;
     margin-bottom: -0.27em;
     line-height: 42px;
     letter-spacing: -0.016em;
     font-weight: 400;
     color: rgba(41, 41, 41, 1);
     font-style: normal;
+    text-align: center;
     font-family: fell, Georgia, Cambria, "Times New Roman", Times, serif;
   }
   .body {
@@ -66,7 +76,7 @@
   height: 48px !important;
 }
 .usercontainer {
-  padding: 50px 0px 0px 0px;
+  padding: 50px 20px 30px 10px;
 }
 .leftside {
   padding: 50px;
@@ -106,17 +116,20 @@
   padding-bottom: 20px;
 }
 .morecontainer {
-  padding-left: 5%;
-  padding-right: 5%;
+  /* padding-left: 5%;
+  padding-right: 5%; */
   min-height: 50vh;
   background-color: #f5f3f3;
 }
 .eachblog {
-  margin: 3px;
+  /* margin: 3px; */
 }
 @media (min-width: 991px) {
-  .eachblog {
+  /* .eachblog {
     padding: 0px 25px 0px 25px;
+  } */
+  .title {
+    padding: 10px;
   }
 }
 .moretitle {

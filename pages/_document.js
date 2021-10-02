@@ -7,11 +7,11 @@ class MyDocument extends Document {
     if (process.env.NEXT_PUBLIC_PRODUCTION_API) {
       return {
         __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-204380862-1');
-    `,
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-208902431-1');
+   `,
       };
     }
   }
@@ -24,7 +24,7 @@ class MyDocument extends Document {
           <meta charSet="UTF-8" />
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-status-bar-style" content="yes" />
-          <meta name="apple-mobile-web-app-title" content="EliteGameZone" />
+          <meta name="apple-mobile-web-app-title" content="Broocode" />
           <meta
             name="p:domain_verify"
             content="b2666a47ce2019ef96afa5b4b91da6a2"
@@ -51,11 +51,12 @@ class MyDocument extends Document {
             href="https://www.googletagmanager.com"
             crossOrigin
           />
-          <link rel="icon" href="/elitegamezone.svg" />
+          <link rel="icon" href="/Bro-trans-bg.svg" />
           <script
             async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-204380862-1"
+            src="https://www.googletagmanager.com/gtag/js?id=UA-208902431-1"
           ></script>
+
           <script
             src="https://apis.google.com/js/platform.js?onload=onLoadCallback"
             async

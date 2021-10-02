@@ -1,24 +1,41 @@
-.outercontainer{
- padding-right: 15px;
- padding-left: 15px;
- cursor: pointer;
+.outercontainer {
+  /* padding-right: 15px;
+  padding-left: 15px; */
+  cursor: pointer;
+  border-radius: 5px 5px 5px 5px;
+  background-color: white;
+  /* padding: 10px; */
+  margin: 0px 10px 10px 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.title{
-font-size: 22px;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
-/* display:-webkit-box;
-text-overflow:ellipsis; */
-line-height:28px;
-font-weight:700;
-color:rgba(41, 41, 41, 1);
-font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+.featureImg {
+  width: 100%;
+  min-height: 320px;
+  border-radius: 5px 5px 0px 0px;
+  object-fit: cover;
+  height: 100%;
+  max-height: 320px;
 }
-.category{
-  margin-right: 10px;
-  padding-top: 5px;
+.innerContainer {
+  padding: 10px 10px 10px 10px;
 }
-.name{
+.title {
+  font-size: 22px;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  line-height: 28px;
+  font-weight: 700;
+  color: rgba(41, 41, 41, 1);
+  font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.category {
+  /* margin-right: 10px; */
+  /* padding-top: 5px; */
+  margin-bottom: 20px;
+}
+.name {
   font-size: 13px;
   font-weight: 500;
   max-height: 16px;
@@ -27,7 +44,7 @@ font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-right: 4px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.categoryname{
+.categoryname {
   font-size: 13px;
   font-weight: 500;
   max-height: 16px;
@@ -36,19 +53,19 @@ font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding-right: 4px;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.in{
+.in {
   font-size: 14px;
   margin-right: 6px;
   font-weight: 500;
   color: darkgrey;
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.subheading{
+.subheading {
   font-size: 19px;
   padding: 8px 0px 10px 0px;
   font-family: sans-serif;
   font-weight: 300;
 }
-.time{
+.time {
   color: grey;
 }

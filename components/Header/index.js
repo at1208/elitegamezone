@@ -46,11 +46,10 @@ const Header = () => {
         <Grid item>
           <a href="/">
             <img
-              src="/elitegamezone.svg"
+              src="/Bro-large-trans-bg.svg"
               className={styles.logo}
-              alt="EliteGameZone"
+              alt="Broocode"
             />
-            <span className={styles.appname}>EliteGameZone</span>
           </a>
         </Grid>
         <Grid item></Grid>

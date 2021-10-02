@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import Head from "next/head";
 import Link from "next/link";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Grid } from "@material-ui/core";
 import styles from "../styles/Home.module.css";
 import Skeleton from "react-loading-skeleton";
-import BlogLargeCard from "../components/Blog/Cards/largeCard";
-import BlogSmallCard from "../components/Blog/Cards/smallCard";
-import BlogMediumCard from "../components/Blog/Cards/mediumCard";
-import AuthorCard from "../components/Blog/Cards/authorCard";
-import TrendingCard from "../components/Blog/Cards/trendingCard";
-import LargeCardSkeleton from "../components/Blog/Cards/largeCardSkeleton";
-import SmallCardSkeleton from "../components/Blog/Cards/smallCardSkeleton";
-import AuthorCardSkeleton from "../components/Blog/Cards/authorCardSkeleton";
-import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
+import BlogLargeCard from "../components/Blog/Cards/Large";
+import SmallCardSkeleton from "../components/Blog/Cards/Skeletons/SmallCardSkeleton";
+import AuthorCardSkeleton from "../components/Blog/Cards/Skeletons/AuthorCardSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+// import Sidebar from "../components/Core/Sidebar";
+import Header from "../components/Home/Header";
 import Layout from "../components/Layout";
+import {
+  SmallblogList,
+  MediumblogList,
+  AuthorList,
+  TrendingList,
+  ShowMoreBlogs,
+} from "../utils/helpers";
+
 import { blog_list, author_list, trending_list } from "../actions/blog";
 import { random_categories } from "../actions/category";
 
@@ -30,26 +32,25 @@ const Home = ({
   const [authors, setAuthors] = useState();
   const [trendingBlogs, setTrending] = useState();
   const [categories, setCategories] = useState();
-  const [limit, setLimit] = useState(blogsLimit);
+  const [limit] = useState(blogsLimit);
   const [skip, setSkip] = useState(0);
-  const [size, setSize] = useState(totalBlogs);
   const [stopLoading, setStopLoading] = useState(false);
   const [loadedBlogs, setLoadedBlogs] = useState([]);
 
-  useEffect(() => {
-    window.onscroll = function () {
-      myFunction();
-    };
-    var rightside = document.getElementById("rightbottom");
-    // var sticky = rightside.offsetTop;
-    function myFunction() {
-      if (window.pageYOffset > 1000) {
-        rightside.classList.add("fix-right-bottom");
-      } else {
-        rightside.classList.remove("fix-right-bottom");
-      }
-    }
-  });
+  // useEffect(() => {
+  //   window.onscroll = function () {
+  //     myFunction();
+  //   };
+  //   var rightside = document.getElementById("rightbottom");
+  //   // var sticky = rightside.offsetTop;
+  //   function myFunction() {
+  //     if (window.pageYOffset > 1000) {
+  //       rightside.classList.add("fix-right-bottom");
+  //     } else {
+  //       rightside.classList.remove("fix-right-bottom");
+  //     }
+  //   }
+  // });
 
   useEffect(() => {
     author_list()
@@ -85,7 +86,7 @@ const Home = ({
       let data = await blog_list({ skip: toSkip, limit });
       if (data.length === 0) return setStopLoading(true);
       setLoadedBlogs([...loadedBlogs, ...data]);
-      setSize(data.length);
+
       setSkip(toSkip);
       return data;
     } catch (e) {
@@ -93,94 +94,11 @@ const Home = ({
     }
   }
 
-  function HeaderSEO() {
-    return (
-      <Head>
-        <title>Elitegamezone</title>
-        <meta
-          name="description"
-          content="Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries."
-        />
-        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_DOMAIN_URL}`} />
-        <meta
-          property="og:title"
-          content={`Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries. | ${process.env.NEXT_PUBLIC_APP_NAME}`}
-        />
-        <meta
-          property="og:description"
-          content="Elitegamezone Is A Website For Gaming Nerds, The Website Would Provide All The Latest And The Greatest News In The Gaming World. Elitegamezone Would Be A One Stop Destination For Ant Gaming Related Queries."
-        />
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}`}
-        />
-        <meta
-          property="og:site_name"
-          content={`${process.env.NEXT_PUBLIC_APP_NAME}`}
-        />
-        <meta
-          property="og:image"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/elitegamezone.svg`}
-        />
-        <meta
-          property="og:image:secure_url"
-          content={`${process.env.NEXT_PUBLIC_DOMAIN_URL}/elitegamezone.svg`}
-        />
-        <meta property="og:image:type" content="image/jpg" />
-        <meta
-          property="fb:app_id"
-          content={`${process.env.NEXT_PUBLIC_FB_APP_ID}`}
-        />
-      </Head>
-    );
-  }
-
-  function SmallblogList() {
-    if (smallBlogs) {
-      return smallBlogs.map((blog, i) => {
-        return <BlogSmallCard blog={blog} key={i} />;
-      });
-    } else {
-      return <> </>;
-    }
-  }
-
-  function MediumblogList() {
-    if (mediumBlogs) {
-      return mediumBlogs.map((blog, i) => {
-        return <BlogMediumCard blog={blog} key={i} />;
-      });
-    } else {
-      return <> </>;
-    }
-  }
-
-  function AuthorList() {
-    if (authors) {
-      return authors.map((author, i) => {
-        return <AuthorCard author={author} key={i} />;
-      });
-    } else {
-      return <> </>;
-    }
-  }
-
-  function TrendingList() {
-    if (trendingBlogs) {
-      return trendingBlogs.map((blog, i) => {
-        return <TrendingCard blog={blog} key={i} count={i} />;
-      });
-    } else {
-      return <></>;
-    }
-  }
-
   function ReadByCategories() {
     if (categories) {
       return categories.map((item, i) => {
         return (
-          <Box p={0} key={i}>
+          <Box key={i}>
             <Link href={`/category/${item.slug}`}>
               <a>
                 <Typography variant="body1" className={styles.categoryName}>
@@ -188,137 +106,87 @@ const Home = ({
                 </Typography>
               </a>
             </Link>
-            <br />
-            <hr />
+
+            {categories.length !== i + 1 && <Box className={styles.line}></Box>}
           </Box>
         );
       });
     }
   }
 
-  function ShowMoreBlogs() {
-    if (loadedBlogs) {
-      return loadedBlogs.map((blog, i) => {
-        return <BlogMediumCard blog={blog} key={i} />;
-      });
-    } else {
-      return <> </>;
-    }
-  }
-
   return (
     <>
-      <HeaderSEO />
+      <Header />
       <Layout>
-        <div className="div-container mb-5">
-          <div className="row col">
-            <div className="col-md-4 col-sm-5 col-lg-4">
-              {largeBlogs ? (
-                <BlogLargeCard blog={largeBlogs} />
-              ) : (
-                <LargeCardSkeleton />
-              )}
-            </div>
-            <div className="col-md-8 col-sm-7 col-lg-4">
-              {smallBlogs ? (
-                <SmallblogList />
-              ) : (
-                <>
-                  <SmallCardSkeleton />
-                  <SmallCardSkeleton />
-                  <SmallCardSkeleton />
-                </>
-              )}
-            </div>
-
-            <div className="col-md-12 col-lg-4">
-              <div className={styles.rightside}>
-                <div className="row col">
-                  <div className="col-md-6 col-sm-6 col-lg-12">
-                    <div>
-                      <font className={styles.title1}>LATEST FROM AUTHORS</font>
-                      <br /> <br />
-                      <div className="row col">
+        <Grid container justify="center">
+          <Grid item md={11} lg={11}>
+            <Grid container justify="center">
+              <Grid item xs={12} sm={5} md={4} lg={4}>
+                {largeBlogs ? <BlogLargeCard blog={largeBlogs} /> : <></>}
+              </Grid>
+              <Grid item xs={12} sm={7} md={8} lg={4}>
+                {smallBlogs
+                  ? SmallblogList(smallBlogs)
+                  : [{}, {}, {}].map((blog, i) => {
+                      return <SmallCardSkeleton />;
+                    })}
+              </Grid>
+              <Grid item xs={12} sm={12} md={12} lg={4}>
+                <Box className={styles.rightside}>
+                  <Grid container>
+                    <Grid sm={6} md={6} lg={12}>
+                      <Box className={styles.authorSection}>
+                        <Box className={styles.title1}>LATEST FROM AUTHORS</Box>
                         {authors ? (
-                          <AuthorList />
+                          <Grid container>{AuthorList(authors)}</Grid>
                         ) : (
-                          <div className="row col">
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                            <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                              <AuthorCardSkeleton />
-                            </div>
-                          </div>
+                          <Grid container>
+                            {[{}, {}, {}, {}, {}, {}, {}, {}].map(
+                              (author, i) => {
+                                return (
+                                  <Grid item xs={3} sm={3} md={3} lg={3}>
+                                    <AuthorCardSkeleton />
+                                  </Grid>
+                                );
+                              }
+                            )}
+                          </Grid>
                         )}
-                      </div>
-                      <div className="pl-3" style={{ color: "teal" }}>
-                        See more
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6 col-sm-6 col-lg-12">
-                    <section className="mt-5">
-                      <font className={styles.title1}>TOPICS TO READ</font>
-                      <br /> <br />
-                      {categories ? (
-                        ReadByCategories()
-                      ) : (
-                        <>
-                          <SmallCardSkeleton />
-                          <SmallCardSkeleton />
-                          <SmallCardSkeleton />
-                        </>
-                      )}
-                      <div className="pl-3" style={{ color: "teal" }}>
-                        <Link href="/categories">
-                          <a>
-                            <span style={{ color: "teal" }}>See more</span>
-                          </a>
-                        </Link>
-                      </div>
-                    </section>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div className="div-container mt-5">
-          <section className={styles.title3}>
-            {" "}
-            TRENDING ON EliteGameZone
-          </section>
-          <div className="row col">
-            <TrendingList />
-          </div>
-        </div>
-        <hr />
-        <div className="mt-5 div-container">
-          <div className="row">
-            <div className="col-md-8">
-              <MediumblogList />
-              {
+                        <Box>
+                          <span style={{ color: "teal" }}>See more</span>
+                        </Box>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={6} lg={12}>
+                      <Box className={styles.categorySection}>
+                        <section>
+                          <Box className={styles.title1}>TOPICS TO READ</Box>
+                          {categories
+                            ? ReadByCategories()
+                            : [{}, {}, {}].map((category, i) => {
+                                return <SmallCardSkeleton />;
+                              })}
+                          <Box pt={2}>
+                            <Link href="/categories">
+                              <a>
+                                <span style={{ color: "teal" }}>See more</span>
+                              </a>
+                            </Link>
+                          </Box>
+                        </section>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </Box>
+              </Grid>
+            </Grid>
+
+            <section className={styles.title3}> TRENDING ON Broocode</section>
+            <Grid container>{TrendingList(trendingBlogs)}</Grid>
+            <Box mb={4} />
+            <Grid container>
+              <Grid item md={8}>
+                {MediumblogList(mediumBlogs)}
                 <InfiniteScroll
                   dataLength={loadedBlogs.length}
                   next={loadMore}
@@ -326,116 +194,27 @@ const Home = ({
                   style={{ overflow: "hidden !important" }}
                   loader={
                     !stopLoading && (
-                      <div style={{ margin: "10px 0px 70px 0px" }}>
-                        <div className="row col">
-                          <div className="col-8">
-                            <Box>
-                              <Skeleton count={4} width={"90%"} />
-                            </Box>
-                          </div>
-                          <div className="col-4">
-                            <Skeleton width={"80%"} height={"100%"} />
-                          </div>
-                        </div>
-                      </div>
+                      <Grid container>
+                        <Grid xs={8}>
+                          <Box>
+                            <Skeleton count={4} width={"90%"} />
+                          </Box>
+                        </Grid>
+                        <Grid xs={4}>
+                          <Skeleton width={"80%"} height={"100%"} />
+                        </Grid>
+                      </Grid>
                     )
                   }
                 >
-                  {<ShowMoreBlogs />}
+                  {ShowMoreBlogs(loadedBlogs)}
                 </InfiniteScroll>
-              }
-            </div>
-            <div className="col-md-4 d-lg-block d-xl-block d-none d-md-block d-lg-none">
-              <section className="rightbottom" id="rightbottom">
-                <div className={styles.rightContainer}>
-                  <div className={styles.rc}>
-                    <span>
-                      <WbIncandescentIcon className={styles.ideaIcon} />
-                    </span>
-                    <label className={styles.exploreText}>
-                      Explore our IDEAS
-                    </label>
-                  </div>
-                  <div className="row col justify-content-center">
-                    <div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <a
-                        href="http://travlojournal.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/travlojournal.svg" className={styles.logo} />
-                      </a>
-                    </div>
-                    {/*<div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <img
-                        src="/fashiofly.svg"
-                        onClick={() =>
-                          (window.location = "http://fashiofly.com")
-                        }
-                        className={styles.logo}
-                      />
-                    </div>*/}
-                    <div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <a
-                        href="http://artoftalk.in"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/artoftalk.svg" className={styles.logo} />
-                      </a>
-                    </div>
-                    <div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <a
-                        href="http://elitegamezone.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/elitegamezone.svg" className={styles.logo} />
-                      </a>
-                    </div>
 
-                    <div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <a
-                        href="http://vedifly.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/vedifly.svg" className={styles.logo} />
-                      </a>
-                    </div>
-                    {/*<div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <img
-                        src="/scientifly.svg"
-                        onClick={() =>
-                          (window.location = "http://scientifly.com")
-                        }
-                        className={styles.logo}
-                      />
-                    </div>*/}
-                    <div className="col-md-5 col-sm-5 col-lg-5 col-6 p-2">
-                      <a
-                        href="http://geeksocean.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <img src="/geeksocean.svg" className={styles.logo} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <span className={styles.field}>Help</span>
-                  <span className={styles.field}>Careers</span>
-                  <span className={styles.field}>Privacy</span>
-                  <span className={styles.field}>Terms</span>
-                  <span className={styles.field}>About</span>
-                  <span className={styles.field}>Contact</span>
-                  <span className={styles.field}>Sponsor</span>
-                </div>
-              </section>
-            </div>
-          </div>
-        </div>
+                {/*<Sidebar />*/}
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
       </Layout>
     </>
   );
@@ -445,7 +224,7 @@ Home.getInitialProps = async () => {
   try {
     let skip = 0;
     let limit = 10;
-    let blog = await blog_list({ limit, skip });
+    let blog = await blog_list();
     let largeBlogs = blog && blog[0];
     let smallBlogs = blog && blog.slice(1, 5);
     let mediumBlogs = blog && blog.slice(5);
