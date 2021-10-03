@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import styles from "../../styles/Blog.module.css";
 import { Grid } from "@material-ui/core";
 
-const BlogSmallCard = dynamic(() => import("./Cards/Small"), {
+const BlogLargeCard = dynamic(() => import("./Cards/Large"), {
   ssr: false,
 });
 
@@ -36,7 +36,7 @@ const RelatedBlogs = ({ blog }) => {
                 key={i}
                 className={styles.eachblog}
               >
-                <BlogSmallCard blog={eachblog} />
+                <BlogLargeCard blog={eachblog} />
               </Grid>
             );
           })}

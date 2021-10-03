@@ -181,7 +181,9 @@ const Home = ({
               </Grid>
             </Grid>
 
-            <section className={styles.title3}> TRENDING ON Broocode</section>
+            <section className={styles.title3}>
+              TRENDING ON Elitegamezone
+            </section>
             <Grid container>{TrendingList(trendingBlogs)}</Grid>
             <Box mb={4} />
             <Grid container>

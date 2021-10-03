@@ -5,6 +5,10 @@
   padding-left: 3%;
   /* padding-top: 20px; */
   padding-right: 3%;
+  height: 70px;
+  background-color: white;
+  /* border-bottom: 2px solid teal; */
+  margin-bottom: 10px;
 }
 .picture {
   height: 35px;

@@ -22,19 +22,21 @@ const Blog = ({ query, blog }) => {
       <>
         <BlogHead blog={blog} />
         <Layout>
-          <Grid container justify="center">
-            <Grid
-              item
-              xs={12}
-              sm={12}
-              md={8}
-              lg={7}
-              xl={6}
-              className={styles.container}
-            >
-              <BlogDetail blog={blog} />
+          <Box className={styles.container}>
+            <Grid container justify="center">
+              <Grid
+                item
+                xs={12}
+                sm={12}
+                md={8}
+                lg={7}
+                xl={6}
+                className={styles.container}
+              >
+                <BlogDetail blog={blog} />
+              </Grid>
             </Grid>
-          </Grid>
+          </Box>
           <Box className={styles.morecontainer}>
             <h5 className={styles.moretitle}>More from Elitegamezone</h5>
             <Grid container justify="center">

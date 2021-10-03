@@ -2,8 +2,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.vedifly.com
+Host: https://www.elitegamezone.com
 
 
 # Sitemaps
-Sitemap: https://www.vedifly.com/sitemap.xml
+Sitemap: https://www.elitegamezone.com/sitemap.xml
